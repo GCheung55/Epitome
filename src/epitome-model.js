@@ -1,8 +1,8 @@
 ;(function(exports) {
 
-    var Epitome = typeof require == 'function' ? require('epitome') : exports.Epitome;
+    var Epitome = exports.Epitome;
 
-    Epitome.Model = new Class({
+    var Model = new Class({
 
         Implements: [Options, Events],
 
@@ -77,14 +77,19 @@
         }
     });
 
+    if (typeof Epitome === 'object') {
+        Epitome.Model = Model;
+    }
+
     // Expose the class for AMD, CommonJS and browsers
     if(typeof define === 'function' && define.amd) {
-        define('epitome-model', function() {
+        define('epitome-model', ['epitome'], function(Epitome) {
+            Epitome.Model = Model;
             return Epitome;
         });
     }
     else if(typeof module === 'object') {
-        module.exports = Epitome;
+        module.exports = exports.Epitome;
     }
     else {
         exports.Epitome = Epitome;

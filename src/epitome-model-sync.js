@@ -1,7 +1,7 @@
 ;(function(exports) {
 
     // get the Epitome module
-    var Epitome = typeof require == 'function' ? require('epitome-model') : exports.Epitome,
+    var Epitome = exports.Epitome,
         Model = Epitome.Model;
 
     // define CRUD mapping.
@@ -13,6 +13,7 @@
     };
 
     // deocrate the original object by adding a new property Sync
+    define('epitome-model-sync', [''])
     Model.Sync = new Class({
 
         Extends: Model,
