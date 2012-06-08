@@ -47,6 +47,22 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "singleLineComment": ["//"],
               "name": "JavaScript"
             },
+            "sourcePath": "/Users/dchristoff/projects/Epitome/src/epitome.js",
+            "projectPath": "src/epitome.js",
+            "targetPath": "src/epitome",
+            "title": "epitome"
+          },
+          "depth": 2,
+          "outline": []
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "singleLineComment": ["//"],
+              "name": "JavaScript"
+            },
             "sourcePath": "/Users/dchristoff/projects/Epitome/src/epitome-model.js",
             "projectPath": "src/epitome-model.js",
             "targetPath": "src/epitome-model",
