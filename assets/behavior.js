@@ -31,63 +31,69 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
       "depth": 1,
       "outline": []
     }, {
-      "type": "folder",
+      "type": "file",
       "data": {
-        "path": "src",
-        "title": "src"
+        "language": {
+          "nameMatchers": [".js"],
+          "pygmentsLexer": "javascript",
+          "singleLineComment": ["//"],
+          "name": "JavaScript"
+        },
+        "sourcePath": "/Users/dchristoff/projects/Epitome/src/epitome.js",
+        "projectPath": "src/epitome.js",
+        "targetPath": "epitome",
+        "title": "epitome"
       },
       "depth": 1,
-      "children": [
-        {
-          "type": "file",
-          "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "singleLineComment": ["//"],
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/dchristoff/projects/Epitome/src/epitome.js",
-            "projectPath": "src/epitome.js",
-            "targetPath": "src/epitome",
-            "title": "epitome"
-          },
-          "depth": 2,
-          "outline": []
-        }, {
-          "type": "file",
-          "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "singleLineComment": ["//"],
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/dchristoff/projects/Epitome/src/epitome-model.js",
-            "projectPath": "src/epitome-model.js",
-            "targetPath": "src/epitome-model",
-            "title": "epitome-model"
-          },
-          "depth": 2,
-          "outline": []
-        }, {
-          "type": "file",
-          "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "singleLineComment": ["//"],
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/dchristoff/projects/Epitome/src/epitome-model-sync.js",
-            "projectPath": "src/epitome-model-sync.js",
-            "targetPath": "src/epitome-model-sync",
-            "title": "epitome-model-sync"
-          },
-          "depth": 2,
-          "outline": []
-        }
-      ]
+      "outline": []
+    }, {
+      "type": "file",
+      "data": {
+        "language": {
+          "nameMatchers": [".js"],
+          "pygmentsLexer": "javascript",
+          "singleLineComment": ["//"],
+          "name": "JavaScript"
+        },
+        "sourcePath": "/Users/dchristoff/projects/Epitome/src/epitome-collection.js",
+        "projectPath": "src/epitome-collection.js",
+        "targetPath": "epitome-collection",
+        "title": "epitome-collection"
+      },
+      "depth": 1,
+      "outline": []
+    }, {
+      "type": "file",
+      "data": {
+        "language": {
+          "nameMatchers": [".js"],
+          "pygmentsLexer": "javascript",
+          "singleLineComment": ["//"],
+          "name": "JavaScript"
+        },
+        "sourcePath": "/Users/dchristoff/projects/Epitome/src/epitome-model.js",
+        "projectPath": "src/epitome-model.js",
+        "targetPath": "epitome-model",
+        "title": "epitome-model"
+      },
+      "depth": 1,
+      "outline": []
+    }, {
+      "type": "file",
+      "data": {
+        "language": {
+          "nameMatchers": [".js"],
+          "pygmentsLexer": "javascript",
+          "singleLineComment": ["//"],
+          "name": "JavaScript"
+        },
+        "sourcePath": "/Users/dchristoff/projects/Epitome/src/epitome-model-sync.js",
+        "projectPath": "src/epitome-model-sync.js",
+        "targetPath": "epitome-model-sync",
+        "title": "epitome-model-sync"
+      },
+      "depth": 1,
+      "outline": []
     }
   ];
 
