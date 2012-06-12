@@ -11,7 +11,7 @@
         // custom accessors.
         properties: {},
 
-        // initial `private` object
+        // initial object
         options: {
             defaults: {}
         },
@@ -76,7 +76,7 @@
         }.overloadGetter(),
 
         toJSON: function() {
-            return Object.clone(this._attributes);
+            return this._attributes;
         }
     });
 
