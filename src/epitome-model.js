@@ -8,9 +8,6 @@
 
         _attributes: {},
 
-        // custom accessors.
-        properties: {},
-
         // initial `private` object
         options: {
             defaults: {}
@@ -44,21 +41,9 @@
             // needs to be bound the the instance.
             if (!key || typeof value === undefined) return this;
 
-            // custom setter - see bit further down
-            if (this.properties[key] && this.properties[key]['set'])
-                return this.properties[key]['set'].call(this, value);
-
-
             // no change? this is crude and works for primitives.
             if (this._attributes[key] && Epitome.isEqual(this._attributes[key], value))
                 return this;
-
-            if (value === null) {
-                delete this._attributes[key]; // delete = null.
-            }
-            else {
-                this._attributes[key] = value;
-            }
 
             // fire an event.
             this.fireEvent('change:' + key, value);
@@ -71,12 +56,11 @@
 
         get: function(key) {
             // and the overload getter
-            return (key && typeof this._attributes[key] !== undefined)
-                ? this.properties[key] && this.properties[key]['get'] ? this.properties[key]['get'].call(this) : this._attributes[key] : null;
+            return (key && typeof this._attributes[key] !== undefined) ? this._attributes[key] : null;
         }.overloadGetter(),
 
         toJSON: function() {
-            return Object.clone(this._attributes);
+            return this._attributes;
         }
     });
 
