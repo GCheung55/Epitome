@@ -1,0 +1,64 @@
+<!DOCTYPE html><html lang="en"><head><title>test/README</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../"><meta name="groc-document-path" content="test/README"><meta name="groc-project-path" content="test/README.md"><meta name="groc-github-url" content="https://github.com/DimitarChristoff/Epitome"><link rel="stylesheet" type="text/css" media="all" href="../assets/style.css"><script type="text/javascript" src="../assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/DimitarChristoff/Epitome/blob/master/test/README.md">test/README.md</a></div></div><div id="document"><div class="segment"><div class="comments"><div class="wrapper"><h2 id="testing-via-busterjs">Testing via Buster.js</h2>
+
+<p><a href="http://busterjs.org">buster-test.js</a> is a new up-and-coming javascript testing framework in development.</p>
+
+<p>It features standalone static testing or CI testing via node with browser capture.
+To see the basic example static test runner, load  <code>index.html</code></p>
+
+<p>To install buster:</p>
+
+<pre><code># npm install -g buster
+</code></pre>
+
+<p>To start the static tester:</p>
+
+<pre><code># buster static
+</code></pre>
+
+<p>To start in capture mode for multiple browsers:</p>
+
+<pre><code># buster server &amp;
+</code></pre>
+
+<p>Once you have captured your target browsers, just run:</p>
+
+<pre><code># buster test
+</code></pre>
+
+<p>Or even better:</p>
+
+<pre><code># buster autotest
+</code></pre>
+
+<p>Standalone testing via <code>buster test</code> w/o browser capture is not supported yet, though you could probably try jsdom or phantom.js - edit buster-test.js config and give it a go. Also, you'd need the server only version of mootools.</p>
+
+<p>Auto-testing is experimental but fairly good for MacOSX at present. You can see it in action on our blog here: http://tech.qmetric.co.uk/running-automated-javascript-testing-with-buster-js-autotest_123.html</p>
+
+<p><strong>nb</strong> please note that when in capture mode via <code>buster server</code>, IE7 and IE8 will fire an exception - which is to do with lack of <code>Object.create</code>, referenced in one of buster's dependencies <code>bundle.js</code>. As a work-around, an es5-shim has been provided that makes tests run in IE7/8 as well.</p>
+
+<p>```sh
+dchristoff@Dimitars-iMac:~/projects/Epitome (master):</p>
+
+<blockquote>
+  <p>buster server &amp;
+  buster-server running on http://localhost:1111
+  dchristoff@Dimitars-iMac:~/projects/Epitome (master):
+  buster test -r specification
+  Firefox 13.0, OS X 10.7 (Lion)
+    ✓ Basic Epitome model creation with initial data > Expect a model to be created >
+    ✓ Basic Epitome model creation with initial data > Expect the _attributes object to contain the sent values >
+    ✓ Basic Epitome model creation with initial data > Expect the model to have the default value if not overridden >
+    ✓ Basic Epitome model creation with initial data > Expect the model to have the default value overridden by model object >
+    ✓ Basic Epitome model creation with initial data > Expect a model not to fire initial change events on set >
+    ✓ Basic Epitome model creation with initial data > Expect a model change not to fire if values have not changed >
+    ✓ Basic Epitome model creation with initial data > Expect a model change on non-primitive values that serialize to the same not to fire >
+    ✓ Basic Epitome model creation with initial data > Expect a model change to fire if values have changed >
+    ✓ Basic Epitome model creation with initial data > Expect a model to fire change event for each property passed >
+    ✓ Basic Epitome model creation with initial data > Expect a that gets set to null to be removed from model >
+    ✓ Basic Epitome model creation with initial data > Expect a key that is not on model to be undefined >
+    ✓ Basic Epitome model creation with initial data > Expect model.toJSON to return an object >
+    ✓ Basic Epitome model creation with initial data > Expect model.toJSON to return a dereferenced object >
+  1 test case, 13 tests, 13 assertions, 0 failures, 0 errors, 0 timeouts
+  Finished in 0.113s
+  ```</p>
+</blockquote></div></div></div></div></body></html>

@@ -120,6 +120,99 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
       },
       "depth": 1,
       "outline": []
+    }, {
+      "type": "folder",
+      "data": {
+        "path": "test",
+        "title": "test"
+      },
+      "depth": 1,
+      "children": [
+        {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".md"],
+              "commentsOnly": true,
+              "name": "Markdown"
+            },
+            "sourcePath": "/Users/dchristoff/projects/Epitome/test/README.md",
+            "projectPath": "test/README.md",
+            "targetPath": "test/README",
+            "title": "README"
+          },
+          "depth": 2,
+          "outline": [
+            {
+              "type": "heading",
+              "data": {
+                "level": 2,
+                "title": "Testing via Buster.js",
+                "slug": "testing-via-busterjs"
+              },
+              "depth": 2
+            }
+          ]
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "singleLineComment": ["//"],
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/dchristoff/projects/Epitome/test/buster.js",
+            "projectPath": "test/buster.js",
+            "targetPath": "test/buster",
+            "title": "buster"
+          },
+          "depth": 2,
+          "outline": []
+        }, {
+          "type": "folder",
+          "data": {
+            "path": "test/tests",
+            "title": "tests"
+          },
+          "depth": 2,
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "singleLineComment": ["//"],
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/dchristoff/projects/Epitome/test/tests/epitome-model-collection-test.js",
+                "projectPath": "test/tests/epitome-model-collection-test.js",
+                "targetPath": "test/tests/epitome-model-collection-test",
+                "title": "epitome-model-collection-test"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "singleLineComment": ["//"],
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/dchristoff/projects/Epitome/test/tests/epitome-model-test.js",
+                "projectPath": "test/tests/epitome-model-test.js",
+                "targetPath": "test/tests/epitome-model-test",
+                "title": "epitome-model-test"
+              },
+              "depth": 3,
+              "outline": []
+            }
+          ]
+        }
+      ]
     }
   ];
 

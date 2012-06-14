@@ -1,0 +1,136 @@
+<!DOCTYPE html><html lang="en"><head><title>test/tests/epitome-model-test</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="test/tests/epitome-model-test"><meta name="groc-project-path" content="test/tests/epitome-model-test.js"><meta name="groc-github-url" content="https://github.com/DimitarChristoff/Epitome"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/DimitarChristoff/Epitome/blob/master/test/tests/epitome-model-test.js">test/tests/epitome-model-test.js</a></div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="nx">buster</span><span class="p">.</span><span class="nx">testRunner</span><span class="p">.</span><span class="nx">timeout</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
+
+<span class="nx">buster</span><span class="p">.</span><span class="nx">testCase</span><span class="p">(</span><span class="s1">&#39;Basic Epitome model creation with initial data &gt;&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">setUp</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">dataInitial</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="nx">foo</span><span class="o">:</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span>
+            <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;1234-5123&#39;</span>
+        <span class="p">};</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">dataAfter</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="nx">bar</span><span class="o">:</span> <span class="s1">&#39;foo&#39;</span>
+        <span class="p">};</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">dataMany</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="nx">foo</span><span class="o">:</span> <span class="s1">&#39;one&#39;</span><span class="p">,</span>
+            <span class="nx">bar</span><span class="o">:</span> <span class="s1">&#39;two&#39;</span><span class="p">,</span>
+            <span class="nx">charlie</span><span class="o">:</span> <span class="s1">&#39;winning&#39;</span>
+        <span class="p">};</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;onChange:foo&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+               <span class="nx">self</span><span class="p">.</span><span class="nx">initialEvents</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+            <span class="p">},</span>
+            <span class="nx">defaults</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">foo</span><span class="o">:</span> <span class="s1">&#39;not bar&#39;</span><span class="p">,</span>
+                <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;dimitar&#39;</span>
+            <span class="p">}</span>
+        <span class="p">};</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">initialEvents</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">model</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Epitome</span><span class="p">.</span><span class="nx">Model</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">dataInitial</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="nx">tearDown</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">removeEvents</span><span class="p">(</span><span class="s1">&#39;change&#39;</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;Expect a model to be created &gt;&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">buster</span><span class="p">.</span><span class="nx">assert</span><span class="p">.</span><span class="nx">isTrue</span><span class="p">(</span><span class="nx">instanceOf</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">,</span> <span class="nx">Epitome</span><span class="p">.</span><span class="nx">Model</span><span class="p">));</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;Expect the _attributes object to contain the sent values &gt;&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">testVal</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;testing&#39;</span><span class="p">,</span> <span class="nx">testVal</span><span class="p">);</span>
+        <span class="nx">buster</span><span class="p">.</span><span class="nx">assert</span><span class="p">.</span><span class="nx">equals</span><span class="p">(</span><span class="nx">testVal</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">_attributes</span><span class="p">[</span><span class="s1">&#39;testing&#39;</span><span class="p">]);</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;Expect the model to have the default value if not overridden &gt;&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">buster</span><span class="p">.</span><span class="nx">assert</span><span class="p">.</span><span class="nx">equals</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">),</span> <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">defaults</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;Expect the model to have the default value overridden by model object &gt;&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">buster</span><span class="p">.</span><span class="nx">refute</span><span class="p">.</span><span class="nx">equals</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">),</span> <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">defaults</span><span class="p">.</span><span class="nx">foo</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;Expect a model not to fire initial change events on set &gt;&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">buster</span><span class="p">.</span><span class="nx">assert</span><span class="p">.</span><span class="nx">isFalse</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">initialEvents</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;Expect a model change not to fire if values have not changed &gt;&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">spy</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">spy</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">addEvent</span><span class="p">(</span><span class="s1">&#39;change&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">spy</span><span class="p">();</span>
+        <span class="p">});</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">dataInitial</span><span class="p">);</span>
+        <span class="nx">buster</span><span class="p">.</span><span class="nx">refute</span><span class="p">.</span><span class="nx">called</span><span class="p">(</span><span class="nx">spy</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;Expect a model change on non-primitive values that serialize to the same not to fire &gt;&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">spy</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">spy</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;obj&#39;</span><span class="p">,</span> <span class="p">{</span>
+            <span class="nx">foo</span><span class="o">:</span> <span class="s1">&#39;bar&#39;</span>
+        <span class="p">});</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">addEvent</span><span class="p">(</span><span class="s1">&#39;change&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">spy</span><span class="p">();</span>
+        <span class="p">});</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;obj&#39;</span><span class="p">,</span> <span class="p">{</span>
+            <span class="nx">foo</span><span class="o">:</span> <span class="s1">&#39;bar&#39;</span>
+        <span class="p">});</span>
+        <span class="nx">buster</span><span class="p">.</span><span class="nx">refute</span><span class="p">.</span><span class="nx">called</span><span class="p">(</span><span class="nx">spy</span><span class="p">);</span>
+    <span class="p">},</span>
+
+
+    <span class="s1">&#39;Expect a model change to fire if values have changed &gt;&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">addEvent</span><span class="p">(</span><span class="s1">&#39;change:bar&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">buster</span><span class="p">.</span><span class="nx">assert</span><span class="p">.</span><span class="nx">equals</span><span class="p">(</span><span class="nx">val</span><span class="p">,</span> <span class="nx">self</span><span class="p">.</span><span class="nx">dataAfter</span><span class="p">.</span><span class="nx">bar</span><span class="p">);</span>
+            <span class="nx">done</span><span class="p">();</span>
+        <span class="p">});</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">dataAfter</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;Expect a model to fire change event for each property passed &gt;&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">spy</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">spy</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">addEvent</span><span class="p">(</span><span class="s1">&#39;change&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">spy</span><span class="p">();</span>
+        <span class="p">});</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">dataMany</span><span class="p">);</span>
+        <span class="nx">buster</span><span class="p">.</span><span class="nx">refute</span><span class="p">.</span><span class="nx">calledThrice</span><span class="p">(</span><span class="nx">spy</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;Expect a key that is not on model to be undefined &gt;&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">buster</span><span class="p">.</span><span class="nx">assert</span><span class="p">.</span><span class="nx">equals</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;foobar&#39;</span><span class="p">),</span> <span class="kc">undefined</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;Expect a that gets set to null to be removed from model &gt;&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+        <span class="nx">buster</span><span class="p">.</span><span class="nx">assert</span><span class="p">.</span><span class="nx">equals</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">),</span> <span class="kc">undefined</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;Expect model.toJSON to return an object &gt;&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">buster</span><span class="p">.</span><span class="nx">assert</span><span class="p">.</span><span class="nx">equals</span><span class="p">(</span><span class="nx">typeOf</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">toJSON</span><span class="p">()),</span> <span class="s1">&#39;object&#39;</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;Expect model.toJSON to return a dereferenced object &gt;&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">json</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">toJSON</span><span class="p">(),</span>
+            <span class="nx">testStr</span> <span class="o">=</span> <span class="s1">&#39;testing&#39;</span><span class="p">;</span>
+
+        <span class="nx">json</span><span class="p">.</span><span class="nx">foo</span> <span class="o">=</span> <span class="nx">testStr</span><span class="p">;</span>
+        <span class="nx">buster</span><span class="p">.</span><span class="nx">refute</span><span class="p">.</span><span class="nx">equals</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">),</span> <span class="nx">json</span><span class="p">.</span><span class="nx">foo</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;Expect model to fire a change passing all changed properties as an object &gt;&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">addEvent</span><span class="p">(</span><span class="s1">&#39;change&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">changed</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">buster</span><span class="p">.</span><span class="nx">assert</span><span class="p">.</span><span class="nx">equals</span><span class="p">(</span><span class="nx">changed</span><span class="p">,</span> <span class="nx">self</span><span class="p">.</span><span class="nx">dataMany</span><span class="p">);</span>
+        <span class="p">});</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">dataMany</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="p">});</span></div></div></div></div></body></html>

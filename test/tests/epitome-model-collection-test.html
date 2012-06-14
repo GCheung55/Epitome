@@ -1,0 +1,117 @@
+<!DOCTYPE html><html lang="en"><head><title>test/tests/epitome-model-collection-test</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="test/tests/epitome-model-collection-test"><meta name="groc-project-path" content="test/tests/epitome-model-collection-test.js"><meta name="groc-github-url" content="https://github.com/DimitarChristoff/Epitome"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/DimitarChristoff/Epitome/blob/master/test/tests/epitome-model-collection-test.js">test/tests/epitome-model-collection-test.js</a></div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="nx">buster</span><span class="p">.</span><span class="nx">testRunner</span><span class="p">.</span><span class="nx">timeout</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
+
+<span class="nx">buster</span><span class="p">.</span><span class="nx">testCase</span><span class="p">(</span><span class="s1">&#39;Basic Epitome empty collection creation &gt;&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">setUp</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">Collection</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Class</span><span class="p">({</span>
+            <span class="nx">Extends</span><span class="o">:</span> <span class="nx">Epitome</span><span class="p">.</span><span class="nx">Collection</span><span class="p">,</span>
+
+            <span class="nx">foo</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+            <span class="p">},</span>
+
+            <span class="nx">onChange</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;hai&#39;</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">collection</span> <span class="o">=</span> <span class="k">new</span> <span class="k">this</span><span class="p">.</span><span class="nx">Collection</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">model</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Epitome</span><span class="p">.</span><span class="nx">Model</span><span class="p">({</span>
+            <span class="nx">hello</span><span class="o">:</span> <span class="s1">&#39;there&#39;</span>
+        <span class="p">});</span>
+
+    <span class="p">},</span>
+
+    <span class="nx">tearDown</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">removeEvents</span><span class="p">(</span><span class="s1">&#39;add&#39;</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">removeEvents</span><span class="p">(</span><span class="s1">&#39;remove&#39;</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;Expect a collection to be created &gt;&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">buster</span><span class="p">.</span><span class="nx">assert</span><span class="p">.</span><span class="nx">isTrue</span><span class="p">(</span><span class="nx">instanceOf</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">,</span> <span class="nx">Epitome</span><span class="p">.</span><span class="nx">Collection</span><span class="p">));</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;Expect adding models to collection to fire onAdd event &gt;&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">addEvent</span><span class="p">(</span><span class="s1">&#39;add&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">model</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">buster</span><span class="p">.</span><span class="nx">assert</span><span class="p">.</span><span class="nx">equals</span><span class="p">(</span><span class="nx">model</span><span class="p">,</span> <span class="nx">self</span><span class="p">.</span><span class="nx">model</span><span class="p">);</span>
+        <span class="p">});</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">addModel</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;Expect removing models to collection to fire onRemove event &gt;&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">addModel</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">addEvent</span><span class="p">(</span><span class="s1">&#39;remove&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">model</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">buster</span><span class="p">.</span><span class="nx">assert</span><span class="p">.</span><span class="nx">equals</span><span class="p">(</span><span class="nx">model</span><span class="p">,</span> <span class="nx">self</span><span class="p">.</span><span class="nx">model</span><span class="p">);</span>
+        <span class="p">});</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">removeModel</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;Expect to be able to add models to the collection&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">models</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">_models</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">addModel</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">);</span>
+        <span class="nx">buster</span><span class="p">.</span><span class="nx">assert</span><span class="p">.</span><span class="nx">equals</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">_models</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span> <span class="nx">models</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;Expect to be able to remove models from the collection&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">modelsCount</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">_models</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">addModel</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">removeModel</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">);</span>
+        <span class="nx">buster</span><span class="p">.</span><span class="nx">assert</span><span class="p">.</span><span class="nx">equals</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">_models</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span> <span class="nx">modelsCount</span><span class="p">);</span>
+    <span class="p">}</span>
+
+
+<span class="p">});</span>
+
+
+<span class="nx">buster</span><span class="p">.</span><span class="nx">testCase</span><span class="p">(</span><span class="s1">&#39;Basic Epitome collection with a model creation &gt;&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">setUp</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">Collection</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Class</span><span class="p">({</span>
+            <span class="nx">Extends</span><span class="o">:</span> <span class="nx">Epitome</span><span class="p">.</span><span class="nx">Collection</span><span class="p">,</span>
+
+            <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">onChange</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                    <span class="k">this</span><span class="p">.</span><span class="nx">change</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">)</span>
+                <span class="p">}</span>
+            <span class="p">},</span>
+
+            <span class="nx">change</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">model</span><span class="p">,</span> <span class="nx">key</span><span class="p">)</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>console.log(model.cid, key, model.get(key));</p></div></div><div class="code"><div class="wrapper">            <span class="p">}</span>
+        <span class="p">});</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">model</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Epitome</span><span class="p">.</span><span class="nx">Model</span><span class="p">({</span>
+            <span class="nx">hello</span><span class="o">:</span> <span class="s1">&#39;there&#39;</span>
+        <span class="p">});</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">models</span> <span class="o">=</span> <span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">];</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">collection</span> <span class="o">=</span> <span class="k">new</span> <span class="k">this</span><span class="p">.</span><span class="nx">Collection</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">models</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="nx">tearDown</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">removeEvents</span><span class="p">(</span><span class="s1">&#39;add&#39;</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">removeEvents</span><span class="p">(</span><span class="s1">&#39;remove&#39;</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;Expect models to be equal to number passed in constructor &gt;&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">buster</span><span class="p">.</span><span class="nx">assert</span><span class="p">.</span><span class="nx">equals</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">_models</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">models</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;Expect onChange on a model to fire for collection &gt;&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">addEvent</span><span class="p">(</span><span class="s1">&#39;change&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">model</span><span class="p">,</span> <span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">buster</span><span class="p">.</span><span class="nx">assert</span><span class="p">.</span><span class="nx">equals</span><span class="p">(</span><span class="nx">model</span><span class="p">,</span> <span class="nx">self</span><span class="p">.</span><span class="nx">model</span><span class="p">);</span>
+        <span class="p">});</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;Expect any Event on any model to fire for collection observer &gt;&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">,</span>
+            <span class="nx">event</span> <span class="o">=</span> <span class="nb">String</span><span class="p">.</span><span class="nx">uniqueID</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">addEvent</span><span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">model</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">buster</span><span class="p">.</span><span class="nx">assert</span><span class="p">.</span><span class="nx">equals</span><span class="p">(</span><span class="nx">model</span><span class="p">,</span> <span class="nx">self</span><span class="p">.</span><span class="nx">model</span><span class="p">);</span>
+        <span class="p">});</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">fireEvent</span><span class="p">(</span><span class="nx">event</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="p">});</span></div></div></div></div></body></html>
