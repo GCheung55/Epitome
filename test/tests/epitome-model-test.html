@@ -103,13 +103,13 @@
         <span class="nx">buster</span><span class="p">.</span><span class="nx">refute</span><span class="p">.</span><span class="nx">calledThrice</span><span class="p">(</span><span class="nx">spy</span><span class="p">);</span>
     <span class="p">},</span>
 
-    <span class="s1">&#39;Expect a key that is not on model to be undefined &gt;&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="nx">buster</span><span class="p">.</span><span class="nx">assert</span><span class="p">.</span><span class="nx">equals</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;foobar&#39;</span><span class="p">),</span> <span class="kc">undefined</span><span class="p">);</span>
+    <span class="s1">&#39;Expect a key that is not on model to be null &gt;&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">buster</span><span class="p">.</span><span class="nx">assert</span><span class="p">.</span><span class="nx">isNull</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;foobar&#39;</span><span class="p">));</span>
     <span class="p">},</span>
 
     <span class="s1">&#39;Expect a that gets set to null to be removed from model &gt;&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
-        <span class="nx">buster</span><span class="p">.</span><span class="nx">assert</span><span class="p">.</span><span class="nx">equals</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">),</span> <span class="kc">undefined</span><span class="p">);</span>
+        <span class="nx">buster</span><span class="p">.</span><span class="nx">assert</span><span class="p">.</span><span class="nx">isNull</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">));</span>
     <span class="p">},</span>
 
     <span class="s1">&#39;Expect model.toJSON to return an object &gt;&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>

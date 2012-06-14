@@ -97,6 +97,22 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "singleLineComment": ["//"],
           "name": "JavaScript"
         },
+        "sourcePath": "/Users/dchristoff/projects/Epitome/src/epitome-isequal.js",
+        "projectPath": "src/epitome-isequal.js",
+        "targetPath": "epitome-isequal",
+        "title": "epitome-isequal"
+      },
+      "depth": 1,
+      "outline": []
+    }, {
+      "type": "file",
+      "data": {
+        "language": {
+          "nameMatchers": [".js"],
+          "pygmentsLexer": "javascript",
+          "singleLineComment": ["//"],
+          "name": "JavaScript"
+        },
         "sourcePath": "/Users/dchristoff/projects/Epitome/src/epitome-model.js",
         "projectPath": "src/epitome-model.js",
         "targetPath": "epitome-model",
